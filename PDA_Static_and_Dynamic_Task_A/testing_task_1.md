@@ -27,6 +27,7 @@ class CardGame
     return card.name
   else
     card2
+    #It would be worth introducing a condition for when both cards are tied
   end
 end
 # Unnecessary 'end'
@@ -45,5 +46,6 @@ def self.cards_total(cards)
   end
 end
 
+#'end' necessary to close class
 
 ```
