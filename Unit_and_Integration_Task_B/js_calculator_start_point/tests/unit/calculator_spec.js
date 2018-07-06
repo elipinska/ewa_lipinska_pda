@@ -38,8 +38,7 @@ it('it should be able to divide', function(){
 
 it('it should be able to save clicked numbers', function(){
   calculator.numberClick(5)
-  calculator.numberClick(6)
-  assert.equal(56, calculator.runningTotal)
+  assert.equal(5, calculator.runningTotal)
 })
 
 it('it should be able to save clicked operator', function(){
@@ -57,15 +56,68 @@ it('it should be able to clear with a click', function(){
   assert.equal(null, calculator.previousOperator)
 })
 
-// The program should correctly perform the following tasks:
-//
-// multiply 3x5 and get 15
-// divide 21/7 and get 3
-// add 1+4 and get 5
-// subtract 7-4 and get 3
-// concatenate multiple number button clicks
-// chain multiple operations together
-// clear the running total without affecting the calculation
+it('it should be able to multiply 3x5 and get 15', function(){
+  calculator.numberClick(3)
+  calculator.operatorClick('*')
+  calculator.numberClick(5)
+  calculator.operatorClick('=')
+  assert.equal(15, calculator.previousTotal)
+})
+
+it('it should be able to divide 21/7 and get 3', function(){
+  calculator.numberClick(21)
+  calculator.operatorClick('/')
+  calculator.numberClick(7)
+  calculator.operatorClick('=')
+  assert.equal(3, calculator.previousTotal)
+})
+
+it('it should be able to add 1+4 and get 5', function(){
+  calculator.numberClick(1)
+  calculator.operatorClick('+')
+  calculator.numberClick(4)
+  calculator.operatorClick('=')
+  assert.equal(5, calculator.previousTotal)
+})
+
+it('it should be able to subtract 7-4 and get 3', function(){
+  calculator.numberClick(7)
+  calculator.operatorClick('-')
+  calculator.numberClick(4)
+  calculator.operatorClick('=')
+  assert.equal(3, calculator.previousTotal)
+})
+
+it('it should be able to sconcatenate multiple number button clicks', function(){
+  calculator.numberClick(5)
+  calculator.numberClick(6)
+  calculator.numberClick(4)
+  assert.equal(564, calculator.runningTotal)
+})
+
+it('it should be able to chain multiple operations together', function(){
+  calculator.numberClick(5)
+  calculator.operatorClick('+')
+  calculator.numberClick(9)
+  calculator.operatorClick('/')
+  calculator.numberClick(2)
+  calculator.operatorClick('*')
+  calculator.numberClick(4)
+  calculator.operatorClick('=')
+  assert.equal(28, calculator.runningTotal)
+})
+
+it('it should be able to clear the running total without affecting the calculation', function(){
+  calculator.numberClick(5)
+  calculator.operatorClick('+')
+  calculator.numberClick(9)
+  calculator.operatorClick('/')
+  calculator.numberClick(2)
+  calculator.clearClick()
+  calculator.numberClick(7)
+  calculator.operatorClick('=')
+  assert.equal(2, calculator.runningTotal)
+})
 
 
 });
